@@ -26,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_UNIT_ID = "id";
     private static final String KEY_UNIT_TITLE = "title";
     private static final String KEY_UNIT_FACTION = "faction";
+    private static final String KEY_UNIT_TYPE = "type";
     private static final String KEY_UNIT_UNIQ = "uniq";
     private static final String KEY_UNIT_MOVE = "move";
     private static final String KEY_UNIT_CHARGE = "charge";
@@ -138,6 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 KEY_UNIT_ID + " INTEGER PRIMARY KEY," +
                 KEY_UNIT_TITLE + " TEXT," +
                 KEY_UNIT_FACTION + " INTEGER REFERENCES " + TABLE_FACTIONS + "," +
+                KEY_UNIT_TYPE + " TEXT," +
                 KEY_UNIT_UNIQ + " INTEGER," +
                 KEY_UNIT_MOVE + " TEXT," +
                 KEY_UNIT_CHARGE + " TEXT," +
@@ -179,7 +181,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_FACTIONS_TABLE);
         db.execSQL(CREATE_ICONS_TABLE);
         db.execSQL(CREATE_ACTIONS_TABLE);
-        Log.d(TAG, CREATE_UNITS_TABLE);
         db.execSQL(CREATE_UNITS_TABLE);
 
     }

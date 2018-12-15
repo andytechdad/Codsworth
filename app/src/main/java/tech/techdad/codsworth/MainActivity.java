@@ -41,12 +41,15 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Faction superMutant = new Faction();
+        Faction survivor = new Faction();
 
         superMutant.faction = "Super Mutant";
+        survivor.faction = "Survivor";
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this);
 
         databaseHelper.addFaction(superMutant);
+        databaseHelper.addFaction(survivor);
 
     }
 
