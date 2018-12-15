@@ -1,5 +1,6 @@
 package tech.techdad.codsworth;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -25,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_UNIT_ID = "id";
     private static final String KEY_UNIT_TITLE = "title";
     private static final String KEY_UNIT_FACTION = "faction";
-    private static final String KEY_UNIT_UNIQ = "unique";
+    private static final String KEY_UNIT_UNIQ = "uniq";
     private static final String KEY_UNIT_MOVE = "move";
     private static final String KEY_UNIT_CHARGE = "charge";
     private static final String KEY_UNIT_STR = "str";
@@ -178,9 +179,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_FACTIONS_TABLE);
         db.execSQL(CREATE_ICONS_TABLE);
         db.execSQL(CREATE_ACTIONS_TABLE);
+        Log.d(TAG, CREATE_UNITS_TABLE);
         db.execSQL(CREATE_UNITS_TABLE);
 
+    }
 
+    public void addFaction(Faction faction){
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.beginTransaction();
+
+        try {
+            ContentValues values = new ContentValues();
+
+            values.put(KEY_FACTION_NAME, faction.faction);
+
+            db.insertOrThrow(TABLE_FACTIONS, null, values);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            Log.d(TAG, "Error while trying to add post to database");
+        } finally {
+            db.endTransaction();
+        }
     }
 
     @Override

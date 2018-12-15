@@ -40,8 +40,13 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        Faction superMutant = new Faction();
+
+        superMutant.faction = "Super Mutant";
+
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this);
 
+        databaseHelper.addFaction(superMutant);
 
     }
 
