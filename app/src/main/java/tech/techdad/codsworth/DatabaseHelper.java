@@ -198,7 +198,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.insertOrThrow(TABLE_FACTIONS, null, values);
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            Log.d(TAG, "Error while trying to add post to database");
+            Log.e(TAG, "Error while trying to add post to database");
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    public void addSkill(Skill skill){
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.beginTransaction();
+
+        try {
+            ContentValues values = new ContentValues();
+
+            values.put(KEY_SKILL_NAME, skill.skill);
+
+            db.insertOrThrow(TABLE_SKILLS, null, values);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            Log.e(TAG, "Error while trying to add post to database");
         } finally {
             db.endTransaction();
         }
