@@ -31,16 +31,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
+    private void createDatabase() {
         // Database Section
         // Setting some values that are going into the database on App Creation
         Faction superMutant      = new Faction();
@@ -102,6 +93,21 @@ public class MainActivity extends AppCompatActivity {
         databaseHelper.addSkill(pistol);
         databaseHelper.addSkill(rifle);
         databaseHelper.addSkill(thrownWeapon);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        createDatabase();
+
+        setTheme(R.style.AppTheme);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mTextMessage = (TextView) findViewById(R.id.message);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
 
 }
